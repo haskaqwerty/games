@@ -1,4 +1,4 @@
-package haskaqwerty.github.circles;
+package haskaqwerty.github.rectangles;
 
 import haskaqwety.github.engine.CanvasPaintListener;
 import haskaqwety.github.engine.GameCanvas;
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class GameWindow extends JFrame implements CanvasPaintListener {
+public class RectanglesWindow extends JFrame implements CanvasPaintListener {
 
     private static final int POS_X = 600;
     private static final int POS_Y = 200;
@@ -23,7 +23,7 @@ public class GameWindow extends JFrame implements CanvasPaintListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GameWindow();
+                new RectanglesWindow();
             }
         });
     }
@@ -32,19 +32,11 @@ public class GameWindow extends JFrame implements CanvasPaintListener {
     private int gameObjectsCount;
     private GameObject[] gameObjects = new GameObject[START_BALLS_COUNT];
 
-    private GameWindow() {
+    private RectanglesWindow() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(POS_X, POS_Y, WIDTH, HEIGHT);
         GameCanvas gameCanvas = new GameCanvas(this);
-        gameCanvas.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                int btn = e.getButton();
-                if (btn == MouseEvent.BUTTON1)
-                    addGameObject(new Ball(e.getX(), e.getY()));
-                else if (gameObjectsCount > 1) removeGameObject();
-            }
-        });
+
         add(gameCanvas);
         initGame();
         setVisible(true);
@@ -78,10 +70,7 @@ public class GameWindow extends JFrame implements CanvasPaintListener {
     }
 
     private void initGame() {
-        addGameObject(new Background());
-        for (int i = 0; i < START_BALLS_COUNT; i++) {
-            addGameObject(new Ball());
-        }
+
     }
 
     @Override

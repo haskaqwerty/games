@@ -1,14 +1,14 @@
-package haskaqwerty.github.circles;
+package haskaqwety.github.engine;
 import javax.swing.*;
 import java.awt.*;
 public class GameCanvas extends JPanel {
 
 
     private long lastFrameTime;
-    private final GameWindow gameWindow;
+    private final CanvasPaintListener listener;
 
-    public GameCanvas(GameWindow gameWindow) {
-        this.gameWindow = gameWindow;
+    public GameCanvas(CanvasPaintListener paintListener) {
+        this.listener = paintListener;
         lastFrameTime = System.nanoTime();
 
     }
@@ -20,7 +20,7 @@ public class GameCanvas extends JPanel {
         float deltaTime = (currentTime - lastFrameTime) * 1e-9f;
         lastFrameTime = currentTime;
 
-        gameWindow.onDrawFrame(this, g, deltaTime);
+        listener.onDrawFrame(this, g, deltaTime);
 
         try {
             Thread.sleep((int)(1f / 60f) * 1000);

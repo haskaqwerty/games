@@ -1,4 +1,7 @@
 package haskaqwerty.github.circles;
+import haskaqwety.github.engine.GameCanvas;
+import haskaqwety.github.engine.GameObject;
+
 import java.awt.*;
 public class Background implements GameObject
 {
